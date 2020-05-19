@@ -21,7 +21,7 @@ minimumHours = 24
 minimumMins = 59
 index = 0
 dia = input("What day is today? ")
-f = open("Horarios por día/"+dia+".txt", "r")
+f = open("../../Schedule/"+dia+".txt", "r")
 for x in f:
     links.append(x.split(',')[0])
     hours.append(x.split(',')[1])
