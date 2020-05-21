@@ -6,7 +6,6 @@ import webbrowser
 keyboard = Controller()
 links = []
 hours = []
-classesTaken = 0
 totalClasses = 0
 
 def joinZoom(link):
@@ -33,7 +32,6 @@ def getNextClass(dia):
         minute = int(x.split(',')[1].split(':')[1])
         hoursToNextClass = hour - now.tm_hour
         minsToNextClass = minute - now.tm_min
-        # print(hoursToNextClass, minsToNextClass)
         if hoursToNextClass == 0 and minsToNextClass >= 0 and minsToNextClass < minimumMins:
             minimumHours = 0
             minimumMins = minsToNextClass
@@ -50,6 +48,7 @@ index, totalClasses = getNextClass(day)
 nextHour = hours[index].split(':')
 print("It's working! Your next class is at"+hours[index]+"(do not close this window)")
 print("Total classes today: ", totalClasses)
+classesTaken = 0
 while classesTaken <= totalClasses:
     time.sleep(20)
     now = time.localtime()
@@ -58,8 +57,8 @@ while classesTaken <= totalClasses:
         joinZoom(links[index])
         classesTaken += 1;
         print("Joined!")
+        #print("You're missing "+(totalClasses-classesTaken)+" classes")
+        time.sleep(60)
         getNextClass(day)
         print("Your next class is at"+hours[index]+"(do not close this window)")
-        print("You're missing "+(totalClasses-classesTaken)+" classes")
         inSession = True
-        time.sleep(60)
