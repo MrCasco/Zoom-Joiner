@@ -8,7 +8,6 @@ links = []
 hours = []
 classesTaken = 0
 totalClasses = 0
-index = 0
 
 def joinZoom(link):
     webbrowser.open(link)
@@ -25,6 +24,7 @@ def getNextClass(dia):
     minimumMins = 59
     totalClasses = 0
     now = time.localtime()
+    index = -1
     f = open("../../Schedule/"+dia+".txt", "r")
     for x in f:
         links.append(x.split(',')[0])
@@ -33,11 +33,12 @@ def getNextClass(dia):
         minute = int(x.split(',')[1].split(':')[1])
         hoursToNextClass = hour - now.tm_hour
         minsToNextClass = minute - now.tm_min
+        # print(hoursToNextClass, minsToNextClass)
         if hoursToNextClass == 0 and minsToNextClass >= 0 and minsToNextClass < minimumMins:
             minimumHours = 0
             minimumMins = minsToNextClass
             index = totalClasses
-        elif hoursToNextClass > 0 and hoursToNextClass <= minimumHours and minsToNextClass >= 0 and minsToNextClass < minimumMins:
+        elif hoursToNextClass > 0 and hoursToNextClass <= minimumHours and minsToNextClass <= 0 and minsToNextClass <= minimumMins:
             minimumHours = hoursToNextClass
             minimumMins = minsToNextClass
             index = totalClasses
