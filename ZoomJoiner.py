@@ -58,7 +58,7 @@ while classesTaken <= totalClasses:
         classesTaken += 1;
         print("Joined!")
         #print("You're missing "+(totalClasses-classesTaken)+" classes")
-        time.sleep(60)
+        time.sleep(180)
         getNextClass(day)
         print("Your next class is at"+hours[index]+"(do not close this window)")
         inSession = True
